@@ -63,7 +63,7 @@ await Promise.all([
     await Promise.all([
       (async function rust() {
         await $`rustup default stable`.pipe(process.stdout);
-        await $`cargo install cargo-binstall`;
+        await $`curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash`;
         await $`cargo binstall --no-confirm ${['ripgrep', 'fastmod', 'starship', 'lsd', 'zellij']}`.pipe(
           process.stdout,
         );
