@@ -174,7 +174,7 @@ indicators: true
 layout: tree
 recursion:
   enabled: true
-  depth: 4
+  depth: 3
 total-size: true
 hyperlink: auto
 `,
