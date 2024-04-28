@@ -212,5 +212,3 @@ hyperlink: auto
 ]);
 
 await $`lsd`.pipe(process.stdout);
-
-await $`pnpm i --force`.pipe(process.stdout);
