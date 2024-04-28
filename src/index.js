@@ -77,7 +77,7 @@ download.max_concurrent_connections=16
         await appendFile(
           join(homedir(), '.bashrc'),
           `
-export PATH="$HOME/bin:$HOME:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/bin:$HOME:$HOME/.cargo/bin:\`go env GOPATH\`/bin:$PATH"
 export TERMINAL="zellij run -c -- "
 export EDITOR="helix"
 alias ls="lsd"
@@ -182,24 +182,20 @@ hyperlink: auto
       (async function caddy() {
         await $`go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest`;
 
-        within(async () => {
-          cd(homedir());
+        await $`xcaddy build ${[
+          '--with github.com/mholt/caddy-events-exec',
+          '--with github.com/mholt/caddy-webdav',
+          '--with github.com/mholt/caddy-l4',
+          '--with github.com/porech/caddy-maxmind-geolocation',
+          '--with github.com/mholt/caddy-ratelimit',
+          '--with github.com/caddyserver/cache-handler',
+          '--with github.com/caddyserver/jsonc-adapter',
+          '--with github.com/caddy-dns/porkbun',
+          '--with github.com/caddy-dns/njalla',
+        ]}`
+          .pipe(process.stdout);
 
-          await $`xcaddy build ${[
-            '--with github.com/mholt/caddy-events-exec',
-            '--with github.com/mholt/caddy-webdav',
-            '--with github.com/mholt/caddy-l4',
-            '--with github.com/porech/caddy-maxmind-geolocation',
-            '--with github.com/mholt/caddy-ratelimit',
-            '--with github.com/caddyserver/cache-handler',
-            '--with github.com/caddyserver/jsonc-adapter',
-            '--with github.com/caddy-dns/porkbun',
-            '--with github.com/caddy-dns/njalla',
-          ]}`
-            .pipe(process.stdout);
-
-          await $`chmod +x ./caddy`;
-        });
+        await $`chmod +x ./caddy`;
 
         await $`caddy --version`;
 
