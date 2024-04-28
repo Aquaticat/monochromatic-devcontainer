@@ -70,7 +70,7 @@ download.max_concurrent_connections=16
       (async function rust() {
         await $`rustup default stable`.pipe(process.stdout);
         await $`curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash`;
-        await $`cargo binstall --no-confirm ${['ripgrep', 'fastmod', 'starship', 'lsd', 'zellij']}`.pipe(
+        await $`cargo binstall --no-confirm ${['ripgrep', 'starship', 'lsd', 'zellij']}`.pipe(
           process.stdout,
         );
 
@@ -91,9 +91,6 @@ eval "$(starship init bash)"
         );
 
         await Promise.all([
-          (async function fastmod() {
-            await $`fastmod --version`;
-          })(),
           (async function rg() {
             await $`rg --version`;
           })(),
