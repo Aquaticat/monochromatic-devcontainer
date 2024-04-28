@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (GitHub)
-        uses: actions/checkout@master
+        uses: actions/checkout@main
 
       - name: Set up QEMU for multi-architecture builds
         uses: docker/setup-qemu-action@master
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pre-build dev container image
-        uses: devcontainers/ci@master
+        uses: devcontainers/ci@main
         with:
           imageName: ghcr.io/aquaticat/monochromatic
           push: always
