@@ -69,7 +69,7 @@ download.max_concurrent_connections=16
     await Promise.all([
       (async function rust() {
         await $`rustup default stable`.pipe(process.stdout);
-        await $`curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash`;
+        await $`curl -L --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash`;
         await $`cargo binstall --no-confirm ${['ripgrep', 'starship', 'lsd', 'zellij']}`.pipe(
           process.stdout,
         );
@@ -77,7 +77,9 @@ download.max_concurrent_connections=16
         await appendFile(
           join(homedir(), '.bashrc'),
           `
-export PATH="$HOME/bin:$HOME:$HOME/.cargo/bin:\`go env GOPATH\`/bin:$PATH"
+export GOPATH="$HOME/go"
+export GOBIN=$GOPATH/bin"
+export PATH="$HOME/bin:$HOME:$HOME/.cargo/bin:$GOBIN:$PATH"
 export TERMINAL="zellij run -c -- "
 export EDITOR="helix"
 alias ls="lsd"
