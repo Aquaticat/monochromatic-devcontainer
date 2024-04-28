@@ -11,11 +11,6 @@
   "dependencies": {
     "zx": ">=8.0"
   },
-  "devDependencies": {
-    "@types/node": ">=20.12",
-    "vite": "*",
-    "@monochromatic.dev/config-typescript": "*"
-  },
   "pnpm": {
     "supportedArchitectures": {
       "os": ["linux", "win32", "darwin", "current"],

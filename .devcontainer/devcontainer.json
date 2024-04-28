@@ -15,7 +15,7 @@
       "org.opencontainers.image.licenses=Apache-2.0"
     ]
   },
-  "onCreateCommand": "echo '\nrepo.refresh.delay=100\ndownload.max_concurrent_connections=16\n' >> /etc/zypp/zypp.conf && zypper in -y which awk && chmod +x ./pnpm-install.sh && ./pnpm-install.sh && ln -sf bash /bin/sh && chsh -s /bin/bash && source ~/.bashrc && pnpm env use --global iron && pnpm i -g zx && zx ./src/index.js",
+  "onCreateCommand": "echo '\nrepo.refresh.delay=100\ndownload.max_concurrent_connections=16\n' >> /etc/zypp/zypp.conf && zypper in -y which awk && chmod +x ./pnpm-install.sh && ./pnpm-install.sh && ln -sf bash /bin/sh && chsh -s /bin/bash && source ~/.bashrc && pnpm env use --global iron && pnpm i -g zx && pnpm i --force && zx ./src/index.js",
   "customizations": {
     "vscode": {
       "settings": {
