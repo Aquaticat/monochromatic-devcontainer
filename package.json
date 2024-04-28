@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "files": [
     ".devcontainer",
-    ".github"
+    ".github",
     "src",
-    "pnpm-install.sh",
+    "pnpm-install.sh"
   ],
   "dependencies": {
     "zx": ">=8.0"
@@ -21,6 +21,6 @@
       "os": ["linux", "win32", "darwin", "current"],
       "cpu": ["x64", "arm64", "current"],
       "libc": ["glibc", "musl", "current"]
-      }
+    }
   }
 }
