@@ -179,7 +179,7 @@ hyperlink: auto
           })(),
         ]);
       })(),
-      async function caddy() {
+      (async function caddy() {
         await $`go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest`;
 
         within(async () => {
@@ -206,7 +206,7 @@ hyperlink: auto
         await $`caddy run`;
         await $`caddy trust`;
         await $`caddy stop`;
-      },
+      })(),
     ]);
   })(),
 ]);
