@@ -28,6 +28,12 @@ await Promise.all([
       .pipe(process.stdout);
   })(),
   (async function zypperOther() {
+    await appendFile('/etc/zypp/zypp.conf',
+    `
+repo.refresh.delay=100
+download.max_concurrent_connections=16
+`);
+
     await $`zypper in -y ${[
       'autoconf',
       'automake',

@@ -4,7 +4,6 @@ LABEL org.opencontainers.image.description="Monochromatic Devcontainer base"
 LABEL org.opencontainers.image.licenses=Apache-2.0
 WORKDIR /root
 COPY . .
-RUN echo '\nrepo.refresh.delay=100\ndownload.max_concurrent_connections=16\n' >> /etc/zypp/zypp.conf
 RUN zypper in -y which awk
 RUN chmod +x ./pnpm-install.sh
 RUN ./pnpm-install.sh
