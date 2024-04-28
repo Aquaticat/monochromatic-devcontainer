@@ -49,6 +49,7 @@ jobs:
         uses: devcontainers/ci@v0.3.1900000349
         with:
           imageName: ghcr.io/aquaticat/monochromatic
+          cacheFrom: opensuse/tumbleweed
           push: always
           platform: linux/amd64,linux/arm64
-          runCmd: echo 'onCreate triggered'
+
