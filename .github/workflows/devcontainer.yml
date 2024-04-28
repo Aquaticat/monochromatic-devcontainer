@@ -13,25 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (GitHub)
-        uses: actions/checkout@latest
+        uses: actions/checkout@master
 
       - name: Set up QEMU for multi-architecture builds
-        uses: docker/setup-qemu-action@latest
+        uses: docker/setup-qemu-action@master
 
       - name: Setup Docker buildx for multi-architecture builds
-        uses: docker/setup-buildx-action@latest
+        uses: docker/setup-buildx-action@master
         with:
           use: true
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@latest
+        uses: docker/login-action@master
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pre-build dev container image
-        uses: devcontainers/ci@latest
+        uses: devcontainers/ci@master
         with:
           imageName: ghcr.io/aquaticat/monochromatic
           push: always
