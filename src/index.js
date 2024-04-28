@@ -204,7 +204,7 @@ hyperlink: auto
 
         await $`caddy --version`;
 
-        await $`caddy run`;
+        await $`caddy start`;
         await $`caddy trust`;
         await $`caddy stop`;
       })(),
