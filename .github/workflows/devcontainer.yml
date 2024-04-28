@@ -51,3 +51,4 @@ jobs:
           imageName: ghcr.io/aquaticat/monochromatic
           push: always
           platform: linux/amd64,linux/arm64
+          runCmd: echo 'onCreate triggered'
