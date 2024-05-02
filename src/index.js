@@ -78,6 +78,11 @@ alias pe="pnpm exec"
 alias pi="pnpm install"
 alias pr="pnpm run"
 alias pb="pnpm build"
+alias pem="pnpm exec monochromatic"
+alias pemb="pnpm exec monochromatic build"
+alias pems="pnpm exec monochromatic serve"
+alias pemc="pnpm exec monochromatic clean"
+alias pemw="pnpm exec monochromatic watch"
 `);
 
     await Promise.all([
