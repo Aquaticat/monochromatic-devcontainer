@@ -16,8 +16,8 @@ console.log('on create: src/index.js taking over');
 $.prefix += 'shopt -s expand_aliases && source ~/.bashrc && ';
 
 await Promise.all([
-  (async function pnpmG() {
-    await $`pnpm i -g ${[
+  (async function pmG() {
+    await $`npm i -g ${[
       '@mdx-js/language-server',
       'remark-language-server',
       'typescript-language-server',
@@ -76,15 +76,15 @@ export TERMINAL="zellij run -c -- "
 export EDITOR="helix"
 alias ls="lsd"
 alias hx="helix"
-alias pe="pnpm exec"
-alias pi="pnpm install"
-alias pr="pnpm run"
-alias pb="pnpm build"
-alias pem="pnpm exec monochromatic"
-alias pemb="pnpm exec monochromatic build"
-alias pems="pnpm exec monochromatic serve"
-alias pemc="pnpm exec monochromatic clean"
-alias pemw="pnpm exec monochromatic watch"
+alias ye="yarn exec"
+alias yi="yarn install"
+alias yr="yarn run"
+alias yb="yarn build"
+alias yem="yarn exec monochromatic"
+alias yemb="yarn exec monochromatic build"
+alias yems="yarn exec monochromatic serve"
+alias yemc="yarn exec monochromatic clean"
+alias yemw="yarn exec monochromatic watch"
 `);
 
     await Promise.all([

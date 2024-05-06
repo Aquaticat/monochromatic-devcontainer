@@ -4,13 +4,11 @@ LABEL org.opencontainers.image.description="Monochromatic Devcontainer base"
 LABEL org.opencontainers.image.licenses=Apache-2.0
 WORKDIR /root
 COPY . .
-RUN zypper in -y which awk
-RUN chmod +x ./pnpm-install.sh
-RUN ./pnpm-install.sh
 RUN ln -sf bash /bin/sh
 RUN chsh -s /bin/bash
-RUN source ~/.bashrc && pnpm env use --global iron
-RUN source ~/.bashrc && pnpm i -g zx
-RUN source ~/.bashrc && pnpm i --force
+RUN zypper in -y which awk nodejs20
+RUN source ~/.bashrc && corepack enable
+RUN source ~/.bashrc && yarn set version stable
+RUN source ~/.bashrc && yarn
 RUN source ~/.bashrc && zx ./src/index.js
 ENTRYPOINT ["/bin/bash"]
