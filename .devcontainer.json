@@ -103,6 +103,7 @@
         "Gruntfuggly.todo-tree",
         "Vue.volar",
         "ms-azuretools.vscode-docker",
+        "arcanis.vscode-zipfs"
       ],
     },
   },
