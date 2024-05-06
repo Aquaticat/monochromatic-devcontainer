@@ -24,6 +24,7 @@ await Promise.all([
       'yaml-language-server',
       'vscode-langservers-extracted',
       'neovim',
+      'yarn',
     ]}`
       .pipe(process.stdout);
   })(),
@@ -216,11 +217,6 @@ hyperlink: auto
         await $`chmod +x ./caddy`;
 
         await $`caddy --version`;
-      })(),
-      (async function bun() {
-        await $`curl -fsSL https://bun.sh/install | bash`;
-
-        await $`bun --version`;
       })(),
     ]);
   })(),
