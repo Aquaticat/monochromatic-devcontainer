@@ -1,3 +1,7 @@
+export FNM_LOGLEVEL="error"
+export FNM_COREPACK_ENABLED="true"
+export FNM_RESOLVE_ENGINES="true"
+export FNM_VERSION_FILE_STRATEGY="recursive"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$HOME/bin:$HOME:$HOME/.cargo/bin:$GOBIN:$PATH"
