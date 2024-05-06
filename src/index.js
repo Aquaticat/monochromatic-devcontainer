@@ -68,25 +68,6 @@ download.max_concurrent_connections=16
     ]}`
       .pipe(process.stdout);
 
-    await appendFile(join(homedir(), '.bashrc'), `
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$HOME/bin:$HOME:$HOME/.cargo/bin:$GOBIN:$PATH"
-export TERMINAL="zellij run -c -- "
-export EDITOR="helix"
-alias ls="lsd"
-alias hx="helix"
-alias ye="yarn exec"
-alias yi="yarn install"
-alias yr="yarn run"
-alias yb="yarn build"
-alias yem="yarn exec monochromatic"
-alias yemb="yarn exec monochromatic build"
-alias yems="yarn exec monochromatic serve"
-alias yemc="yarn exec monochromatic clean"
-alias yemw="yarn exec monochromatic watch"
-`);
-
     await Promise.all([
       (async function rust() {
         await $`rustup default stable`.pipe(process.stdout);
