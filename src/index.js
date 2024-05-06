@@ -62,6 +62,7 @@ download.max_concurrent_connections=16
       'plantuml',
       'rsvg-convert',
       'rustup',
+      'unzip',
       'zlib-devel',
     ]}`
       .pipe(process.stdout);
