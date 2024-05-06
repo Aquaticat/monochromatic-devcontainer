@@ -127,8 +127,15 @@ disabled=true
 # Don't need the full node version normally.
 # When in doubt, run node --version manually.
 [nodejs]
-format='v [$symbol($version )]($style)'
+format='v [$symbol ($version)]($style) '
 version_format='\${major}'
+symbol='node'
+
+[bun]
+format='v [$symbol ($version)]($style) '
+version_format='\${major}.\${minor}'
+style='bold yellow'
+symbol='bun'
 
 [package]
 symbol=''
