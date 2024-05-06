@@ -210,6 +210,11 @@ hyperlink: auto
 
         await $`caddy --version`;
       })(),
+      (async function bun() {
+        await $`curl -fsSL https://bun.sh/install | bash`;
+
+        await $`bun --version`;
+      })(),
     ]);
   })(),
 ]);
