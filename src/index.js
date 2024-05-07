@@ -17,14 +17,13 @@ $.prefix += 'shopt -s expand_aliases && source ~/.bashrc && ';
 
 await Promise.all([
   (async function pmG() {
-    await $`npm i -g ${[
+    await $`npm i -g --force ${[
       '@mdx-js/language-server',
       'remark-language-server',
       'typescript-language-server',
       'yaml-language-server',
       'vscode-langservers-extracted',
       'neovim',
-      'yarn',
     ]}`
       .pipe(process.stdout);
   })(),
