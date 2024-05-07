@@ -10,6 +10,7 @@ RUN zypper in -y which awk curl unzip
 RUN source ~/.bashrc && curl -fsSL https://fnm.vercel.app/install | bash
 RUN source ~/.bashrc && fnm install --lts
 RUN source ~/.bashrc && fnm default 20
+RUN source ~/.bashrc && npm i -g zx
 RUN source ~/.bashrc && npm install
 RUN source ~/.bashrc && zx ./src/index.js
 ENTRYPOINT ["/bin/bash"]
