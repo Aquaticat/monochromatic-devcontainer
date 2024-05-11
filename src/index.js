@@ -5,11 +5,7 @@ import {
 } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-import {
-  $,
-  cd,
-  within,
-} from 'zx';
+import { $ } from 'zx';
 
 console.log('on create: src/index.js taking over');
 
@@ -45,6 +41,7 @@ download.max_concurrent_connections=16
       'binutils',
       'bison',
       'brotli',
+      'caddy',
       'cmake',
       'command-not-found',
       'cpp',
@@ -184,26 +181,6 @@ hyperlink: auto
             await $`lsd --version`;
           })(),
         ]);
-      })(),
-      (async function caddy() {
-        await $`go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest`;
-
-        await $`xcaddy build ${[
-          '--with', 'github.com/mholt/caddy-events-exec',
-          '--with', 'github.com/mholt/caddy-webdav',
-          '--with', 'github.com/mholt/caddy-l4',
-          '--with', 'github.com/porech/caddy-maxmind-geolocation',
-          '--with', 'github.com/mholt/caddy-ratelimit',
-          '--with', 'github.com/caddyserver/cache-handler',
-          '--with', 'github.com/caddyserver/jsonc-adapter',
-          '--with', 'github.com/caddy-dns/porkbun',
-          '--with', 'github.com/caddy-dns/njalla',
-        ]}`
-          .pipe(process.stdout);
-
-        await $`chmod +x ./caddy`;
-
-        await $`caddy --version`;
       })(),
     ]);
   })(),
