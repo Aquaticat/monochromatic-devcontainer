@@ -23,11 +23,6 @@ await Promise.all([
     ]}`
       .pipe(process.stdout);
   })(),
-  (async function git() {
-    // https://stackoverflow.com/questions/72219458/is-it-possible-to-override-yarn-install-to-use-https-instead-of-git
-    await $`git config --global url."https://github".insteadOf ssh://git@github`;
-    await $`git config --global url."https://github.com/".insteadOf git@github.com:`;
-  })(),
   (async function zypperOther() {
     await appendFile('/etc/zypp/zypp.conf',
     `
@@ -72,6 +67,11 @@ download.max_concurrent_connections=16
       .pipe(process.stdout);
 
     await Promise.all([
+      (async function git() {
+        // https://stackoverflow.com/questions/72219458/is-it-possible-to-override-yarn-install-to-use-https-instead-of-git
+        await $`git config --global url."https://github".insteadOf ssh://git@github`;
+        await $`git config --global url."https://github.com/".insteadOf git@github.com:`;
+      })(),
       (async function rust() {
         await $`rustup default stable`.pipe(process.stdout);
         await $`curl -L --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash`;
