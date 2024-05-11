@@ -27,6 +27,11 @@ await Promise.all([
     ]}`
       .pipe(process.stdout);
   })(),
+  (async function git() {
+    // https://stackoverflow.com/questions/72219458/is-it-possible-to-override-yarn-install-to-use-https-instead-of-git
+    await $`git config --global url."https://github".insteadOf ssh://git@github`;
+    await $`git config --global url."https://github.com/".insteadOf git@github.com:`;
+  })(),
   (async function zypperOther() {
     await appendFile('/etc/zypp/zypp.conf',
     `
@@ -41,6 +46,7 @@ download.max_concurrent_connections=16
       'bison',
       'brotli',
       'cmake',
+      'command-not-found',
       'cpp',
       'helix',
       'gcc',
@@ -62,6 +68,7 @@ download.max_concurrent_connections=16
       'plantuml',
       'rsvg-convert',
       'rustup',
+      'openssh-clients',
       'unzip',
       'zlib-devel',
     ]}`
