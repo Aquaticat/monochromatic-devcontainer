@@ -183,4 +183,6 @@ hyperlink: auto
   })(),
 ]);
 
+await $`rm -rf ${['package.json', 'src', '.devcontainer.json', '.editorconfig', '.github', '.gitattributes', '.gitignore', '.npmrc', '.biome.jsonc', 'dockerfile', 'dprint.json', 'LICENSE']}`;
+
 await $`lsd`.pipe(process.stdout);
