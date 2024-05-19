@@ -13,7 +13,7 @@ $.prefix += 'shopt -s expand_aliases && source ~/.bashrc && ';
 
 await Promise.all([
   (async function pmG() {
-    await $`npm i -g --force ${[
+/*     await $`npm i -g --force ${[
       '@mdx-js/language-server',
       'remark-language-server',
       'typescript-language-server',
@@ -21,7 +21,7 @@ await Promise.all([
       'vscode-langservers-extracted',
       'neovim',
     ]}`
-      .pipe(process.stdout);
+      .pipe(process.stdout); */
   })(),
   (async function zypperOther() {
     await appendFile('/etc/zypp/zypp.conf',
@@ -30,17 +30,11 @@ repo.refresh.delay=100
 download.max_concurrent_connections=16
 `);
 
-    await $`zypper addrepo https://download.opensuse.org/repositories/devel:languages:go/openSUSE_Factory/devel:languages:go.repo`;
-
-    await $`zypper --gpg-auto-import-keys refresh`;
-
     await $`zypper in -y ${[
       //region Utils
-      'command-not-found',
       'helix',
       'git',
       'openssh-clients',
-      'unzip',
       //endregion
 
       //region Depends
@@ -64,7 +58,8 @@ download.max_concurrent_connections=16
 
     await Promise.all([
       (async function mkcert() {
-        await $`mkcert -install`;
+        await $`go install github.com/FiloSottile/mkcert@latest`.pipe(process.stdout);
+        await $`mkcert -install`.pipe(process.stdout);
       })(),
       (async function git() {
         // https://stackoverflow.com/questions/72219458/is-it-possible-to-override-yarn-install-to-use-https-instead-of-git
