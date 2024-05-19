@@ -13,9 +13,9 @@ Copied down so I don't hit their servers every time I change my configurations.
 ```yaml
 # See https://github.com/devcontainers/ci/issues/191#issuecomment-1416384710
 - name: Install updated Skopeo
-# This can be omitted once runner images have a version of Skopeo > 1.4.1
-# See https://github.com/containers/skopeo/issues/1874
-run: |
+  # This can be omitted once runner images have a version of Skopeo > 1.4.1
+  # See https://github.com/containers/skopeo/issues/1874
+  run: |
     sudo apt purge buildah golang-github-containers-common podman skopeo
     sudo apt autoremove --purge
     REPO_URL="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable"

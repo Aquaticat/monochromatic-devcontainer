@@ -30,43 +30,42 @@ repo.refresh.delay=100
 download.max_concurrent_connections=16
 `);
 
+    await $`zypper addrepo https://download.opensuse.org/repositories/devel:languages:go/openSUSE_Factory/devel:languages:go.repo`;
+
+    await $`zypper --gpg-auto-import-keys refresh`;
+
     await $`zypper in -y ${[
-      'autoconf',
-      'automake',
-      'binutils',
-      'bison',
-      'brotli',
-      'caddy',
-      'cmake',
+      //region Utils
       'command-not-found',
-      'cpp',
       'helix',
-      'gcc',
-      'gcc-c++',
-      'gettext-tools',
       'git',
-      'glibc-devel',
-      'go',
+      'openssh-clients',
+      'unzip',
+      //endregion
+
+      //region Depends
       'graphviz',
-      'helix',
       'ImageMagick',
-      'libstdc++-devel',
-      'libtool',
-      'm4',
-      'make',
+      'lsof',
+      'mkcert',
       'mozilla-nss-tools',
-      'ncurses-devel',
       'patch',
       'plantuml',
       'rsvg-convert',
+      'zstd',
+      //endregion
+
+      //region Package Managers
+      'go',
       'rustup',
-      'openssh-clients',
-      'unzip',
-      'zlib-devel',
+      //endregion
     ]}`
       .pipe(process.stdout);
 
     await Promise.all([
+      (async function mkcert() {
+        await $`mkcert -install`;
+      })(),
       (async function git() {
         // https://stackoverflow.com/questions/72219458/is-it-possible-to-override-yarn-install-to-use-https-instead-of-git
         await $`git config --global url."https://github".insteadOf ssh://git@github`;
@@ -75,7 +74,7 @@ download.max_concurrent_connections=16
       (async function rust() {
         await $`rustup default stable`.pipe(process.stdout);
         await $`curl -L --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash`;
-        await $`cargo binstall --no-confirm ${['ripgrep', 'starship', 'lsd', 'zellij']}`.pipe(
+        await $`cargo binstall --no-confirm ${['ripgrep', 'starship', 'lsd', 'zellij', 'static-web-server']}`.pipe(
           process.stdout,
         );
 
