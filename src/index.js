@@ -3,7 +3,7 @@ import {
   appendFile,
   mkdir,
 } from 'node:fs/promises';
-import { homedir } from 'node:os';
+import { homedir, arch } from 'node:os';
 import { join } from 'node:path';
 import { $ } from 'zx';
 
@@ -41,7 +41,6 @@ download.max_concurrent_connections=16
       'graphviz',
       'ImageMagick',
       'lsof',
-      'mkcert',
       'mozilla-nss-tools',
       'patch',
       'plantuml',
@@ -58,7 +57,11 @@ download.max_concurrent_connections=16
 
     await Promise.all([
       (async function mkcert() {
-        await $`go install github.com/FiloSottile/mkcert@latest`.pipe(process.stdout);
+        await $`curl  -JLO "https://dl.filippo.io/mkcert/latest?for=linux/${
+          new Map([['arm', 'arm'], ['arm64', 'arm64'], ['x64', 'amd64']]).get(arch())
+        }"`.pipe(process.stdout);
+        await $`chmod +x mkcert-v*-linux-*`;
+        await $`mv mkcert-v*-linux-* /usr/local/bin/mkcert`;
         await $`mkcert -install`.pipe(process.stdout);
       })(),
       (async function git() {
